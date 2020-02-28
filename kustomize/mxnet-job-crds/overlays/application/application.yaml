@@ -1,0 +1,41 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: mxnet-job-crds
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mxnet-job-crds
+      app.kubernetes.io/instance: mxnet-job-crds-v0.7.1
+      app.kubernetes.io/managed-by: kfctl
+      app.kubernetes.io/component: mxjob
+      app.kubernetes.io/part-of: kubeflow
+      app.kubernetes.io/version: v0.7.1
+  componentKinds:
+  - group: core
+    kind: Service
+  - group: apps
+    kind: Deployment
+  - group: core
+    kind: ServiceAccount
+  - group: kubeflow.org
+    kind: MXJob
+  descriptor:
+    type: "mxnet-job-crds"
+    version: "v1beta1"
+    description: "Mxnet-job-crds contains the \"TFJob\" custom resource definition."
+    maintainers:
+    - name: Xigang Wang
+      email: wangxigang2014@gmail.com
+    owners:
+    - name: Xigang Wang
+      email: wangxigang2014@gmail.com
+    keywords:
+    - "mxjob"
+    - "mxnet-operator"
+    links:
+    - description: About
+      url: "https://github.com/kubeflow/mxnet-operator"
+    - description: Docs
+      url: "https://www.kubeflow.org/docs/components/training/mxnet/"
+  addOwnerRef: true

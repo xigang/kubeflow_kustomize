@@ -1,0 +1,41 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: mxnet-operator
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mxnet-operator
+      app.kubernetes.io/instance: mxnet-operator-v0.7.1
+      app.kubernetes.io/managed-by: kfctl
+      app.kubernetes.io/component: mxjob
+      app.kubernetes.io/part-of: kubeflow
+      app.kubernetes.io/version: v0.7.1
+  componentKinds:
+  - group: core
+    kind: Service
+  - group: apps
+    kind: Deployment
+  - group: core
+    kind: ServiceAccount
+  - group: kubeflow.org
+    kind: MXJob
+  descriptor:
+    type: "mxnet-operator"
+    version: "v1beta1"
+    description: "MXnet-operator allows users to create and manage the \"TFJob\" custom resource."
+    maintainers:
+    - name: Richard Liu
+      email: ricliu@google.com
+    owners:
+    - name: Richard Liu
+      email: ricliu@google.com
+    keywords:
+    - "mxjob"
+    - "mxnet-operator"
+    links:
+    - description: About
+      url: "https://github.com/kubeflow/mxnet-operator"
+    - description: Docs
+      url: "https://www.kubeflow.org/docs/components/training/mxnet/"
+  addOwnerRef: true
